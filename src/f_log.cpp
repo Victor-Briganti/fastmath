@@ -11,7 +11,7 @@ template <typename T> static T kernel_log2(T x) {
   T acc, xp;
 
   // transform mantissa from [0.5, 1) -> [0, 1)
-  const T mantissa = std::frexp(x, &exp) * 2 - 1;
+  const T mantissa = frexp(x, &exp) * 2 - 1;
   exp = exp - 1;
 
   acc = coeffs[0] + coeffs[1] * mantissa;

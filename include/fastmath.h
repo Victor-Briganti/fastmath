@@ -19,4 +19,12 @@ float fast_log10f(float x);
 double fast_log10(double x);
 long double fast_log10l(long double x);
 
+float fast_exp2f(float x);
+double fast_exp2(double x);
+long double fast_exp2l(long double x);
+
+float fast_expf(float x);
+double fast_exp(double x);
+long double fast_expl(long double x);
+
 #endif // __FASTMATH_H__

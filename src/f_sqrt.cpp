@@ -8,7 +8,7 @@ template <typename T> static T kernel_sqrt(T x) {
   T acc, xp;
 
   // transform mantissa from [0.5, 1) -> [0, 1)
-  const T mantissa = std::frexp(x, &exp) * 2 - 1;
+  const T mantissa = frexp(x, &exp) * 2 - 1;
   exp = exp - 1;
 
   acc = coeffs[0] + coeffs[1] * mantissa;
@@ -23,7 +23,7 @@ template <typename T> static T kernel_sqrt(T x) {
   if (exp % 2 != 0)
     acc *= static_cast<T>(M_SQRT2);
 
-  return static_cast<T>(acc * std::ldexp(1, exp / 2));
+  return static_cast<T>(acc * ldexp(1, exp / 2));
 }
 
 float fast_sqrtf(float x) { return kernel_sqrt<float>(x); }
