@@ -40,6 +40,15 @@ $(TEST_OBJ_DIR): | $(OBJ_DIR)
 test_sqrt: $(LIB_PATH) | $(TEST_OBJ_DIR)
 	$(CXX) $(DBFLAGS) $(INCLUDES) test/sqrt.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(TEST_OBJ_DIR)/$@ -lm $(LDPATH)
 
+test_log2: $(LIB_PATH) | $(TEST_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) test/log2.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(TEST_OBJ_DIR)/$@ -lm $(LDPATH)
+
+test_log: $(LIB_PATH) | $(TEST_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) test/log.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(TEST_OBJ_DIR)/$@ -lm $(LDPATH)
+
+test_log10: $(LIB_PATH) | $(TEST_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) test/log10.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(TEST_OBJ_DIR)/$@ -lm $(LDPATH)
+
 debug:
 	$(MAKE) BUILD_TYPE=debug
 
