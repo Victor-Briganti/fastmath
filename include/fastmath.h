@@ -2,6 +2,7 @@
 #define __FASTMATH_H__
 
 #define M_LOG10_2 0.3010299956639812
+#define M_ONE_LN2 1.4426950408889634
 
 float fast_sqrtf(float x);
 double fast_sqrt(double x);

@@ -2,7 +2,6 @@
 #include <cmath>
 
 #define COEFF_SIZE 10
-#define M_ONE_LN2 1.4426950408889634
 
 template <typename T> static T kernel_exp2(T x) {
   constexpr T coeffs[COEFF_SIZE] = {T(1.00000000e+00), T(6.93147181e-01),
@@ -46,11 +45,11 @@ double fast_exp2(double x) { return kernel_exp2<double>(x); }
 long double fast_exp2l(long double x) { return kernel_exp2<long double>(x); }
 
 float fast_expf(float x) {
-  return kernel_exp2<float>(static_cast<float>(M_ONE_LN2 * x));
+  return kernel_exp2<float>(static_cast<float>(M_ONE_LN2) * x);
 }
 
-double fast_exp(double x) { return kernel_exp2<double>(M_ONE_LN2 * x); }
+double fast_exp(double x) { return kernel_exp2<double>(M_ONE_LN2) * x; }
 
 long double fast_expl(long double x) {
-  return kernel_exp2<long double>(static_cast<long double>(M_ONE_LN2 * x));
+  return kernel_exp2<long double>(static_cast<long double>(M_ONE_LN2) * x);
 }
