@@ -36,4 +36,8 @@ float fast_cosf(float x);
 double fast_cos(double x);
 long double fast_cosl(long double x);
 
+float fast_tanf(float x);
+double fast_tan(double x);
+long double fast_tanl(long double x);
+
 #endif // __FASTMATH_H__
