@@ -1,6 +1,5 @@
 #include "fastmath.h"
 #include <cmath>
-#include <math.h>
 
 #define COEFF_SIZE 13
 
@@ -38,9 +37,7 @@ float fast_sinf(float x) {
   return kernel_sin_pi(static_cast<float>(M_1_PI) * x);
 }
 
-double fast_sin(double x) {
-  return kernel_sin_pi(static_cast<double>(M_1_PI) * x);
-}
+double fast_sin(double x) { return kernel_sin_pi(M_1_PI * x); }
 
 long double fast_sinl(long double x) {
   return kernel_sin_pi(static_cast<long double>(M_1_PI) * x);

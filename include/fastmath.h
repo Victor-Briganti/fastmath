@@ -32,4 +32,8 @@ float fast_sinf(float x);
 double fast_sin(double x);
 long double fast_sinl(long double x);
 
+float fast_cosf(float x);
+double fast_cos(double x);
+long double fast_cosl(long double x);
+
 #endif // __FASTMATH_H__
