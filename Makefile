@@ -55,6 +55,9 @@ test_exp: $(LIB_PATH) | $(TEST_OBJ_DIR)
 test_exp2: $(LIB_PATH) | $(TEST_OBJ_DIR)
 	$(CXX) $(DBFLAGS) $(INCLUDES) test/exp2.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(TEST_OBJ_DIR)/$@ -lm $(LDPATH)
 
+test_sin: $(LIB_PATH) | $(TEST_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) test/sin.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(TEST_OBJ_DIR)/$@ -lm $(LDPATH)
+
 debug:
 	$(MAKE) BUILD_TYPE=debug
 

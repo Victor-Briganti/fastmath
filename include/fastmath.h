@@ -28,4 +28,8 @@ float fast_expf(float x);
 double fast_exp(double x);
 long double fast_expl(long double x);
 
+float fast_sinf(float x);
+double fast_sin(double x);
+long double fast_sinl(long double x);
+
 #endif // __FASTMATH_H__
