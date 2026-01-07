@@ -48,7 +48,7 @@ float fast_expf(float x) {
   return kernel_exp2<float>(static_cast<float>(M_ONE_LN2) * x);
 }
 
-double fast_exp(double x) { return kernel_exp2<double>(M_ONE_LN2) * x; }
+double fast_exp(double x) { return kernel_exp2<double>(M_ONE_LN2 * x); }
 
 long double fast_expl(long double x) {
   return kernel_exp2<long double>(static_cast<long double>(M_ONE_LN2) * x);
