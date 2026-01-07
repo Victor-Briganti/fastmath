@@ -4,9 +4,9 @@
 #define M_LOG10_2 0.3010299956639812
 #define M_ONE_LN2 1.4426950408889634
 
-float fast_sqrtf(float x);
-double fast_sqrt(double x);
-long double fast_sqrtl(long double x);
+//===----------------------------------------------------------------------===//
+// Exponential Functions
+//===----------------------------------------------------------------------===//
 
 float fast_log2f(float x);
 double fast_log2(double x);
@@ -28,6 +28,14 @@ float fast_expf(float x);
 double fast_exp(double x);
 long double fast_expl(long double x);
 
+float fast_powf(float x, float y);
+double fast_pow(double x, double y);
+long double fast_powl(long double x, long double y);
+
+//===----------------------------------------------------------------------===//
+// Trigonometric Functions
+//===----------------------------------------------------------------------===//
+
 float fast_sinf(float x);
 double fast_sin(double x);
 long double fast_sinl(long double x);
@@ -40,14 +48,6 @@ float fast_tanf(float x);
 double fast_tan(double x);
 long double fast_tanl(long double x);
 
-float fast_powf(float x, float y);
-double fast_pow(double x, double y);
-long double fast_powl(long double x, long double y);
-
-float fast_atanf(float x);
-double fast_atan(double x);
-long double fast_atanl(long double x);
-
 float fast_asinf(float x);
 double fast_asin(double x);
 long double fast_asinl(long double x);
@@ -55,6 +55,14 @@ long double fast_asinl(long double x);
 float fast_acosf(float x);
 double fast_acos(double x);
 long double fast_acosl(long double x);
+
+float fast_atanf(float x);
+double fast_atan(double x);
+long double fast_atanl(long double x);
+
+//===----------------------------------------------------------------------===//
+// Hyperbolic Functions
+//===----------------------------------------------------------------------===//
 
 float fast_sinhf(float x);
 double fast_sinh(double x);
@@ -67,5 +75,13 @@ long double fast_coshl(long double x);
 float fast_tanhf(float x);
 double fast_tanh(double x);
 long double fast_tanhl(long double x);
+
+//===----------------------------------------------------------------------===//
+// Other Functions
+//===----------------------------------------------------------------------===//
+
+float fast_sqrtf(float x);
+double fast_sqrt(double x);
+long double fast_sqrtl(long double x);
 
 #endif // __FASTMATH_H__
