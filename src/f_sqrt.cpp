@@ -35,11 +35,11 @@ template <typename T> static T kernel_sqrt(T x) {
     acc *= static_cast<T>(M_SQRT2);
 
   if constexpr (std::is_same_v<T, float>) {
-    return acc * ldexpf(1, exp / 2);
+    return acc * ldexpf(1, exp >> 2);
   } else if constexpr (std::is_same_v<T, double>) {
-    return acc * ldexp(1, exp / 2);
+    return acc * ldexp(1, exp >> 2);
   } else {
-    return acc * ldexpl(1, exp / 2);
+    return acc * ldexpl(1, exp >> 2);
   }
 }
 
