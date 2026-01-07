@@ -40,4 +40,8 @@ float fast_tanf(float x);
 double fast_tan(double x);
 long double fast_tanl(long double x);
 
+float fast_powf(float x, float y);
+double fast_pow(double x, double y);
+long double fast_powl(long double x, long double y);
+
 #endif // __FASTMATH_H__
