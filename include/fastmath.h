@@ -60,4 +60,8 @@ float fast_sinhf(float x);
 double fast_sinh(double x);
 long double fast_sinhl(long double x);
 
+float fast_coshf(float x);
+double fast_cosh(double x);
+long double fast_coshl(long double x);
+
 #endif // __FASTMATH_H__

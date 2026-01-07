@@ -76,6 +76,9 @@ test_acos: $(LIB_PATH) | $(TEST_OBJ_DIR)
 test_sinh: $(LIB_PATH) | $(TEST_OBJ_DIR)
 	$(CXX) $(DBFLAGS) $(INCLUDES) test/sinh.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(TEST_OBJ_DIR)/$@ -lm $(LDPATH)
 
+test_cosh: $(LIB_PATH) | $(TEST_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) test/cosh.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(TEST_OBJ_DIR)/$@ -lm $(LDPATH)
+
 debug:
 	$(MAKE) BUILD_TYPE=debug
 
