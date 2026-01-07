@@ -48,4 +48,8 @@ float fast_atanf(float x);
 double fast_atan(double x);
 long double fast_atanl(long double x);
 
+float fast_asinf(float x);
+double fast_asin(double x);
+long double fast_asinl(long double x);
+
 #endif // __FASTMATH_H__

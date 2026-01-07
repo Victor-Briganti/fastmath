@@ -67,6 +67,9 @@ test_tan: $(LIB_PATH) | $(TEST_OBJ_DIR)
 test_atan: $(LIB_PATH) | $(TEST_OBJ_DIR)
 	$(CXX) $(DBFLAGS) $(INCLUDES) test/atan.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(TEST_OBJ_DIR)/$@ -lm $(LDPATH)
 
+test_asin: $(LIB_PATH) | $(TEST_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) test/asin.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(TEST_OBJ_DIR)/$@ -lm $(LDPATH)
+
 debug:
 	$(MAKE) BUILD_TYPE=debug
 
