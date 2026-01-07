@@ -56,4 +56,8 @@ float fast_acosf(float x);
 double fast_acos(double x);
 long double fast_acosl(long double x);
 
+float fast_sinhf(float x);
+double fast_sinh(double x);
+long double fast_sinhl(long double x);
+
 #endif // __FASTMATH_H__
