@@ -64,4 +64,8 @@ float fast_coshf(float x);
 double fast_cosh(double x);
 long double fast_coshl(long double x);
 
+float fast_tanhf(float x);
+double fast_tanh(double x);
+long double fast_tanhl(long double x);
+
 #endif // __FASTMATH_H__
