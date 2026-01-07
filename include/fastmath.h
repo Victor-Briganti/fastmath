@@ -44,4 +44,8 @@ float fast_powf(float x, float y);
 double fast_pow(double x, double y);
 long double fast_powl(long double x, long double y);
 
+float fast_atanf(float x);
+double fast_atan(double x);
+long double fast_atanl(long double x);
+
 #endif // __FASTMATH_H__
