@@ -2,17 +2,39 @@
 
 #include <cmath>
 
-float fast_asinf(float x) {
-  constexpr float one = 1.0f;
-  return fast_atanf(x / fast_sqrtf(one - x * x));
+template <typename T> static T kernel_asin(T x) {
+  constexpr T pi2 = static_cast<T>(M_PI_2);
+  constexpr T one = static_cast<T>(1.0);
+
+  if (x >= one)
+    return pi2;
+
+  if (x <= -one)
+    return -pi2;
+
+  T frac;
+  if constexpr (std::is_same_v<T, float>) {
+    frac = sqrtf(one - x * x);
+  } else if constexpr (std::is_same_v<T, double>) {
+    frac = sqrt(one - x * x);
+  } else {
+    frac = sqrtl(one - x * x);
+  }
+
+  if (frac < static_cast<T>(1e-7))
+    return (x < 0) ? -pi2 : pi2;
+
+  if constexpr (std::is_same_v<T, float>) {
+    return fast_atanf(x / frac);
+  } else if constexpr (std::is_same_v<T, double>) {
+    return fast_atan(x / frac);
+  } else {
+    return fast_atanl(x / frac);
+  }
 }
 
-double fast_asin(double x) {
-  constexpr double one = 1.0;
-  return fast_atan(x / fast_sqrt(one - x * x));
-}
+float fast_asinf(float x) { return kernel_asin<float>(x); }
 
-long double fast_asinl(long double x) {
-  constexpr long double one = 1.0L;
-  return fast_atanl(x / fast_sqrtl(one - x * x));
-}
+double fast_asin(double x) { return kernel_asin<double>(x); }
+
+long double fast_asinl(long double x) { return kernel_asin<long double>(x); }
