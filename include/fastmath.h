@@ -52,4 +52,8 @@ float fast_asinf(float x);
 double fast_asin(double x);
 long double fast_asinl(long double x);
 
+float fast_acosf(float x);
+double fast_acos(double x);
+long double fast_acosl(long double x);
+
 #endif // __FASTMATH_H__

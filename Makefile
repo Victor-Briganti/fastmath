@@ -70,6 +70,9 @@ test_atan: $(LIB_PATH) | $(TEST_OBJ_DIR)
 test_asin: $(LIB_PATH) | $(TEST_OBJ_DIR)
 	$(CXX) $(DBFLAGS) $(INCLUDES) test/asin.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(TEST_OBJ_DIR)/$@ -lm $(LDPATH)
 
+test_acos: $(LIB_PATH) | $(TEST_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) test/acos.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(TEST_OBJ_DIR)/$@ -lm $(LDPATH)
+
 debug:
 	$(MAKE) BUILD_TYPE=debug
 
