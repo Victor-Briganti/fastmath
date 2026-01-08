@@ -14,6 +14,11 @@ FUNCTIONS = {
         "domain": [-1, 1],
         "degree": 13,
     },
+    "cos": {
+        "func": lambda x: np.cos(x * math.pi),
+        "domain": [-1, 1],
+        "degree": 13,
+    },
     "sqrt": {
         "func": lambda x: np.sqrt(1 + x),
         "domain": [0, 1],
@@ -34,6 +39,7 @@ def helper():
     print("Valid functions:")
     print("    - exp2")
     print("    - sin")
+    print("    - cos")
     print("    - sqrt")
     print("    - log2")
 
