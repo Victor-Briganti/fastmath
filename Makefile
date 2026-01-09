@@ -174,6 +174,12 @@ bench_error_log10: $(LIB_PATH) | $(BENCH_OBJ_DIR)
 bench_error_log10f: $(LIB_PATH) | $(BENCH_OBJ_DIR)
 	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/log10f.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
 
+bench_error_pow: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/pow.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_powf: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/powf.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
 debug:
 	$(MAKE) BUILD_TYPE=debug
 
