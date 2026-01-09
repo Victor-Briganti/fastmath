@@ -30,25 +30,17 @@ SRCS := $(wildcard $(SRC_DIR)/*.cpp)
 TEST_OBJ_DIR  := $(OBJ_DIR)/test
 BENCH_OBJ_DIR := $(OBJ_DIR)/bench
 
-TESTS := sqrt log2 log log10 exp exp2 pow \
+FUNCTIONS := sqrt log2 log log10 exp exp2 pow \
          sin cos tan atan asin acos \
          sinh cosh tanh
 
-TEST_BINS := $(addprefix $(TEST_OBJ_DIR)/test_, $(TESTS))
-
-BENCH_FUNCS := \
-  cos cosf sin sinf tan tanf \
-  acos acosf asin asinf atan atanf \
-  cosh coshf sinh sinhf tanh tanhf \
-  exp expf exp2 exp2f \
-  log logf log2 log2f log10 log10f \
-  pow powf sqrt sqrtf
+TEST_BINS := $(addprefix $(TEST_OBJ_DIR)/test_, $(FUNCTIONS))
 
 BENCH_ERROR_BINS := \
-  $(addprefix $(BENCH_OBJ_DIR)/bench_error_, $(BENCH_FUNCS))
+  $(addprefix $(BENCH_OBJ_DIR)/bench_error_, $(FUNCTIONS))
 
 BENCH_SPEED_BINS := \
-		$(addprefix $(BENCH_OBJ_DIR)/bench_speed_, $(BENCH_FUNCS))
+		$(addprefix $(BENCH_OBJ_DIR)/bench_speed_, $(FUNCTIONS))
 
 all: shared
 
