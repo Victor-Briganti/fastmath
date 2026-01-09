@@ -17,8 +17,8 @@ endif
 
 SRC_DIR := src
 OBJ_DIR := build
-TEST_DIR := test
 TEST_OBJ_DIR := $(OBJ_DIR)/test
+BENCH_OBJ_DIR := $(OBJ_DIR)/bench
 
 PATH_LIB := $(OBJ_DIR)
 LDPATH := -Wl,-rpath=$(PATH_LIB)
@@ -36,6 +36,11 @@ $(OBJ_DIR):
 
 $(TEST_OBJ_DIR): | $(OBJ_DIR)
 	@mkdir -p $@
+
+$(BENCH_OBJ_DIR): | $(OBJ_DIR)
+	@mkdir -p $@
+
+test: test_sqrt test_log2 test_log test_log10 test_exp test_exp2 test_pow test_sin test_cos test_tan test_atan test_asin test_acos test_sinh test_cosh test_tanh
 
 test_sqrt: $(LIB_PATH) | $(TEST_OBJ_DIR)
 	$(CXX) $(DBFLAGS) $(INCLUDES) test/sqrt.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(TEST_OBJ_DIR)/$@ -lm $(LDPATH)
@@ -84,6 +89,42 @@ test_cosh: $(LIB_PATH) | $(TEST_OBJ_DIR)
 
 test_tanh: $(LIB_PATH) | $(TEST_OBJ_DIR)
 	$(CXX) $(DBFLAGS) $(INCLUDES) test/tanh.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(TEST_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_cos: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/cos.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_cosf: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/cosf.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_sin: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/sin.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_sinf: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/sinf.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_tan: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/tan.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_tanf: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/tanf.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_acos: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/acos.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_acosf: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/acosf.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_asin: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/asin.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_asinf: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/asinf.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_atan: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/atan.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_atanf: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/atanf.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
 
 debug:
 	$(MAKE) BUILD_TYPE=debug
