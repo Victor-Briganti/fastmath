@@ -22,7 +22,7 @@ FUNCTIONS = {
     "sqrt": {
         "func": lambda x: np.sqrt(1 + x),
         "domain": [0, 1],
-        "degree": 5,
+        "degree": 9,
     },
     "log2": {
         "func": lambda x: np.log2(1 + x),
