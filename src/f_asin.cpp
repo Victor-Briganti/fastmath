@@ -18,7 +18,7 @@ template <typename T> static T kernel_asin(T x) {
   } else if constexpr (std::is_same_v<T, double>) {
     frac = sqrt(one - x * x);
   } else {
-    frac = sqrtl(one - x * x);
+    static_assert(false, "Invalid type for this function");
   }
 
   if (frac < static_cast<T>(1e-7))
@@ -29,12 +29,10 @@ template <typename T> static T kernel_asin(T x) {
   } else if constexpr (std::is_same_v<T, double>) {
     return fast_atan(x / frac);
   } else {
-    return fast_atanl(x / frac);
+    static_assert(false, "Invalid type for this function");
   }
 }
 
 float fast_asinf(float x) { return kernel_asin<float>(x); }
 
 double fast_asin(double x) { return kernel_asin<double>(x); }
-
-long double fast_asinl(long double x) { return kernel_asin<long double>(x); }

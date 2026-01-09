@@ -17,7 +17,7 @@ template <typename T> static T kernel_exp2(T x) {
   } else if constexpr (std::is_same_v<T, double>) {
     integer = floor(x);
   } else {
-    integer = floorl(x);
+    static_assert(false, "Invalid type for this function");
   }
   const T decimal = x - integer;
 
@@ -34,7 +34,7 @@ template <typename T> static T kernel_exp2(T x) {
   } else if constexpr (std::is_same_v<T, double>) {
     return ldexp(acc, static_cast<int>(integer));
   } else {
-    return ldexpl(acc, static_cast<int>(integer));
+    static_assert(false, "Invalid type for this function");
   }
 }
 
@@ -42,14 +42,8 @@ float fast_exp2f(float x) { return kernel_exp2<float>(x); }
 
 double fast_exp2(double x) { return kernel_exp2<double>(x); }
 
-long double fast_exp2l(long double x) { return kernel_exp2<long double>(x); }
-
 float fast_expf(float x) {
   return kernel_exp2<float>(static_cast<float>(M_ONE_LN2) * x);
 }
 
 double fast_exp(double x) { return kernel_exp2<double>(M_ONE_LN2 * x); }
-
-long double fast_expl(long double x) {
-  return kernel_exp2<long double>(static_cast<long double>(M_ONE_LN2) * x);
-}

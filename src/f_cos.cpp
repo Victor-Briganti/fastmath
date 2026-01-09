@@ -18,8 +18,9 @@ template <typename T> static T kernel_cos_pi(T x) {
   } else if constexpr (std::is_same_v<T, double>) {
     integer = round(x / 2);
   } else {
-    integer = roundl(x / 2);
+    static_assert(false, "Invalid type for this function");
   }
+
   x -= 2 * integer;
 
   acc = coeffs[0] + coeffs[1] * x;
@@ -38,7 +39,3 @@ float fast_cosf(float x) {
 }
 
 double fast_cos(double x) { return kernel_cos_pi<double>(M_1_PI * x); }
-
-long double fast_cosl(long double x) {
-  return fast_sinl(x + static_cast<long double>(M_PI_2));
-}

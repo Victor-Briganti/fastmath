@@ -18,7 +18,7 @@ template <typename T> static T kernel_sin_pi(T x) {
   } else if constexpr (std::is_same_v<T, double>) {
     integer = round(x / 2);
   } else {
-    integer = roundl(x / 2);
+    static_assert(false, "Invalid type for this function");
   }
   x -= 2 * integer;
 
@@ -38,7 +38,3 @@ float fast_sinf(float x) {
 }
 
 double fast_sin(double x) { return kernel_sin_pi(M_1_PI * x); }
-
-long double fast_sinl(long double x) {
-  return kernel_sin_pi(static_cast<long double>(M_1_PI) * x);
-}

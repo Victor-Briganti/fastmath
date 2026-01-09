@@ -17,7 +17,7 @@ template <typename T> static T kernel_sqrt(T x) {
   } else if constexpr (std::is_same_v<T, double>) {
     mantissa = frexp(x, &exp) * 2 - 1;
   } else {
-    mantissa = frexpl(x, &exp) * 2 - 1;
+    static_assert(false, "Invalid type for this function");
   }
 
   exp = exp - 1;
@@ -39,12 +39,10 @@ template <typename T> static T kernel_sqrt(T x) {
   } else if constexpr (std::is_same_v<T, double>) {
     return acc * ldexp(1, exp >> 2);
   } else {
-    return acc * ldexpl(1, exp >> 2);
+    static_assert(false, "Invalid type for this function");
   }
 }
 
 float fast_sqrtf(float x) { return kernel_sqrt<float>(x); }
 
 double fast_sqrt(double x) { return kernel_sqrt<double>(x); }
-
-long double fast_sqrtl(long double x) { return kernel_sqrt<long double>(x); }

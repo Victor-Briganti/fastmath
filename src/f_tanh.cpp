@@ -24,14 +24,3 @@ double fast_tanh(double x) {
   const double ex2 = fast_exp(x * 2);
   return (ex2 - 1) / (ex2 + 1);
 }
-
-long double fast_tanhl(long double x) {
-  if (x < -19)
-    return -1;
-
-  if (x > 19)
-    return 1;
-
-  const long double ex2 = fast_expl(x * 2);
-  return (ex2 - 1) / (ex2 + 1);
-}

@@ -20,7 +20,7 @@ template <typename T> static T kernel_log2(T x) {
   } else if constexpr (std::is_same_v<T, double>) {
     mantissa = frexp(x, &exp) * 2 - 1;
   } else {
-    mantissa = frexpl(x, &exp) * 2 - 1;
+    static_assert(false, "Invalid type for this function");
   }
   exp = exp - 1;
 
@@ -39,8 +39,6 @@ float fast_log2f(float x) { return kernel_log2<float>(x); }
 
 double fast_log2(double x) { return kernel_log2<double>(x); }
 
-long double fast_log2l(long double x) { return kernel_log2<long double>(x); }
-
 float fast_logf(float x) {
   return static_cast<float>(M_LN2) * kernel_log2<float>(x);
 }
@@ -49,18 +47,10 @@ double fast_log(double x) {
   return static_cast<double>(M_LN2) * kernel_log2<double>(x);
 }
 
-long double fast_logl(long double x) {
-  return static_cast<long double>(M_LN2) * kernel_log2<long double>(x);
-}
-
 float fast_log10f(float x) {
   return static_cast<float>(M_LOG10_2) * kernel_log2<float>(x);
 }
 
 double fast_log10(double x) {
   return static_cast<double>(M_LOG10_2) * kernel_log2<double>(x);
-}
-
-long double fast_log10l(long double x) {
-  return static_cast<long double>(M_LOG10_2) * kernel_log2<long double>(x);
 }

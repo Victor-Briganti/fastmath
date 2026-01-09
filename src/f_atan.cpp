@@ -34,5 +34,3 @@ template <typename T> static T kernel_atan(T x) {
 float fast_atanf(float x) { return kernel_atan<float>(x); }
 
 double fast_atan(double x) { return kernel_atan<double>(x); }
-
-long double fast_atanl(long double x) { return kernel_atan<long double>(x); }
