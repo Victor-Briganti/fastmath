@@ -30,9 +30,7 @@ SRCS := $(wildcard $(SRC_DIR)/*.cpp)
 TEST_OBJ_DIR  := $(OBJ_DIR)/test
 BENCH_OBJ_DIR := $(OBJ_DIR)/bench
 
-FUNCTIONS := sqrt log2 log log10 exp exp2 pow \
-         sin cos tan atan asin acos \
-         sinh cosh tanh
+FUNCTIONS := sin cos tan atan asin acos sinh cosh tanh exp exp2 log log2 log10 pow sqrt
 
 TEST_BINS := $(addprefix $(TEST_OBJ_DIR)/test_, $(FUNCTIONS))
 
