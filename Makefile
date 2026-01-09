@@ -180,6 +180,12 @@ bench_error_pow: $(LIB_PATH) | $(BENCH_OBJ_DIR)
 bench_error_powf: $(LIB_PATH) | $(BENCH_OBJ_DIR)
 	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/powf.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
 
+bench_error_sqrt: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/sqrt.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_sqrtf: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/sqrtf.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
 debug:
 	$(MAKE) BUILD_TYPE=debug
 
