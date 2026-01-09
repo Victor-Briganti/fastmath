@@ -156,6 +156,24 @@ bench_error_exp2: $(LIB_PATH) | $(BENCH_OBJ_DIR)
 bench_error_exp2f: $(LIB_PATH) | $(BENCH_OBJ_DIR)
 	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/exp2f.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
 
+bench_error_log: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/log.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_logf: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/logf.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_log2: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/log2.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_log2f: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/log2f.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_log10: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/log10.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_log10f: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/log10f.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
 debug:
 	$(MAKE) BUILD_TYPE=debug
 
