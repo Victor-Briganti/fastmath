@@ -11,13 +11,12 @@ template <typename T> static T kernel_atan(T x) {
   constexpr T c4 = static_cast<T>(-0.00749305860992);
 
   T offset = 0.0;
+  x = -one / x;
 
   if (x > one) {
     offset = pi2;
-    x = -one / x;
   } else if (x < -one) {
     offset = -pi2;
-    x = -one / x;
   }
 
   T x2 = x * x;
