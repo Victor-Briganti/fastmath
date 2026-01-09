@@ -4,6 +4,8 @@
 #define COEFF_SIZE 10
 
 template <typename T> static T kernel_exp2(T x) {
+  static_assert(std::is_same_v<T, float> || std::is_same_v<T, double>,
+                "Invalid type for this function");
   constexpr T coeffs[COEFF_SIZE] = {T(1.00000000e+00), T(6.93147181e-01),
                                     T(2.40226507e-01), T(5.55041104e-02),
                                     T(9.61811830e-03), T(1.33339455e-03),
@@ -16,8 +18,6 @@ template <typename T> static T kernel_exp2(T x) {
     integer = floorf(x);
   } else if constexpr (std::is_same_v<T, double>) {
     integer = floor(x);
-  } else {
-    static_assert(false, "Invalid type for this function");
   }
   const T decimal = x - integer;
 
@@ -33,8 +33,6 @@ template <typename T> static T kernel_exp2(T x) {
     return ldexpf(acc, static_cast<int>(integer));
   } else if constexpr (std::is_same_v<T, double>) {
     return ldexp(acc, static_cast<int>(integer));
-  } else {
-    static_assert(false, "Invalid type for this function");
   }
 }
 

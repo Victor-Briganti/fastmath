@@ -4,6 +4,8 @@
 #define COEFF_SIZE 6
 
 template <typename T> static T kernel_sqrt(T x) {
+  static_assert(std::is_same_v<T, float> || std::is_same_v<T, double>,
+                "Invalid type for this function");
   constexpr T coeffs[COEFF_SIZE] = {T(1.0000032),   T(0.49985756),
                                     T(-0.12345242), T(0.05545629),
                                     T(-0.0225715),  T(0.00492283)};
@@ -16,10 +18,7 @@ template <typename T> static T kernel_sqrt(T x) {
     mantissa = frexpf(x, &exp) * 2 - 1;
   } else if constexpr (std::is_same_v<T, double>) {
     mantissa = frexp(x, &exp) * 2 - 1;
-  } else {
-    static_assert(false, "Invalid type for this function");
   }
-
   exp = exp - 1;
 
   acc = coeffs[0] + coeffs[1] * mantissa;
@@ -38,8 +37,6 @@ template <typename T> static T kernel_sqrt(T x) {
     return acc * ldexpf(1, exp >> 2);
   } else if constexpr (std::is_same_v<T, double>) {
     return acc * ldexp(1, exp >> 2);
-  } else {
-    static_assert(false, "Invalid type for this function");
   }
 }
 

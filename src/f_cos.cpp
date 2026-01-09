@@ -4,6 +4,8 @@
 #define COEFF_SIZE 14
 
 template <typename T> static T kernel_cos_pi(T x) {
+  static_assert(std::is_same_v<T, float> || std::is_same_v<T, double>,
+                "Invalid type for this function");
   constexpr T coeffs[COEFF_SIZE] = {
       T(9.99999992e-01),  T(-5.58095804e-16), T(-4.93480139e+00),
       T(1.36699826e-14),  T(4.05869825e+00),  T(-1.26448668e-13),
@@ -17,8 +19,6 @@ template <typename T> static T kernel_cos_pi(T x) {
     integer = roundf(x / 2);
   } else if constexpr (std::is_same_v<T, double>) {
     integer = round(x / 2);
-  } else {
-    static_assert(false, "Invalid type for this function");
   }
 
   x -= 2 * integer;

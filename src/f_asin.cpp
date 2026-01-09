@@ -3,6 +3,8 @@
 #include <cmath>
 
 template <typename T> static T kernel_asin(T x) {
+  static_assert(std::is_same_v<T, float> || std::is_same_v<T, double>,
+                "Invalid type for this function");
   constexpr T pi2 = static_cast<T>(M_PI_2);
   constexpr T one = static_cast<T>(1.0);
 
@@ -17,8 +19,6 @@ template <typename T> static T kernel_asin(T x) {
     frac = sqrtf(one - x * x);
   } else if constexpr (std::is_same_v<T, double>) {
     frac = sqrt(one - x * x);
-  } else {
-    static_assert(false, "Invalid type for this function");
   }
 
   if (frac < static_cast<T>(1e-7))
@@ -28,8 +28,6 @@ template <typename T> static T kernel_asin(T x) {
     return fast_atanf(x / frac);
   } else if constexpr (std::is_same_v<T, double>) {
     return fast_atan(x / frac);
-  } else {
-    static_assert(false, "Invalid type for this function");
   }
 }
 

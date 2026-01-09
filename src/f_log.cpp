@@ -4,6 +4,8 @@
 #define COEFF_SIZE 10
 
 template <typename T> static T kernel_log2(T x) {
+  static_assert(std::is_same_v<T, float> || std::is_same_v<T, double>,
+                "Invalid type for this function");
   constexpr T coeffs[COEFF_SIZE] = {T(3.89729184e-05),  T(1.44211130e+00),
                                     T(-7.17371181e-01), T(4.64553842e-01),
                                     T(-3.15227816e-01), T(1.97374547e-01),
@@ -19,8 +21,6 @@ template <typename T> static T kernel_log2(T x) {
     mantissa = frexpf(x, &exp) * 2 - 1;
   } else if constexpr (std::is_same_v<T, double>) {
     mantissa = frexp(x, &exp) * 2 - 1;
-  } else {
-    static_assert(false, "Invalid type for this function");
   }
   exp = exp - 1;
 
