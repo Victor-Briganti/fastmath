@@ -144,6 +144,18 @@ bench_error_tanh: $(LIB_PATH) | $(BENCH_OBJ_DIR)
 bench_error_tanhf: $(LIB_PATH) | $(BENCH_OBJ_DIR)
 	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/tanhf.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
 
+bench_error_exp: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/exp.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_expf: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/expf.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_exp2: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/exp2.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
+bench_error_exp2f: $(LIB_PATH) | $(BENCH_OBJ_DIR)
+	$(CXX) $(DBFLAGS) $(INCLUDES) bench/error/exp2f.cpp -L$(PATH_LIB) -l$(LIB_NAME) -o $(BENCH_OBJ_DIR)/$@ -lm $(LDPATH)
+
 debug:
 	$(MAKE) BUILD_TYPE=debug
 
