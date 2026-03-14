@@ -18,6 +18,7 @@ SHARED_LIB := lib$(LIB_NAME).so
 
 SRC_DIR := src
 OBJ_DIR := build
+OUT_DIR := output
 
 PATH_LIB := $(OBJ_DIR)
 LIB_PATH := $(PATH_LIB)/$(SHARED_LIB)
@@ -46,9 +47,20 @@ shared: $(LIB_PATH)
 
 test: $(TEST_BINS)
 
-bench_error: $(BENCH_ERROR_BINS)
+bench_error: output | $(BENCH_ERROR_BINS)
+	@for bench in $(BENCH_ERROR_BINS); do \
+		echo "Running $$bench"; \
+		$$bench; \
+		done
 
-bench_speed: $(BENCH_SPEED_BINS)
+bench_speed: output | $(BENCH_SPEED_BINS)
+	@for bench in $(BENCH_SPEED_BINS); do \
+		echo "Running $$bench"; \
+		$$bench; \
+		done
+
+output:
+	@mkdir $(OUT_DIR)
 
 debug:
 	$(MAKE) BUILD_TYPE=debug
@@ -58,6 +70,7 @@ release:
 
 clean:
 	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OUT_DIR)
 
 $(LIB_PATH): $(SRCS) | $(OBJ_DIR)
 	$(CXX) -shared -o $@ $^ $(CXXFLAGS) $(INCLUDES)
@@ -67,9 +80,11 @@ $(TEST_OBJ_DIR)/test_%: test/%.cpp $(LIB_PATH) | $(TEST_OBJ_DIR)
 
 $(BENCH_OBJ_DIR)/bench_error_%: bench/error/%.cpp $(LIB_PATH) | $(BENCH_OBJ_DIR)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $< $(LIBS) -o $@
+	#$(CXX) -ffast-math $(CXXFLAGS) $(INCLUDES) $< $(LIBS) -o $@
 
 $(BENCH_OBJ_DIR)/bench_speed_%: bench/speed/%.cpp $(LIB_PATH) | $(BENCH_OBJ_DIR)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $< $(LIBS) -o $@
+	#$(CXX) -ffast-math $(CXXFLAGS) $(INCLUDES) $< $(LIBS) -o $@
 
 $(OBJ_DIR):
 	@mkdir -p $@

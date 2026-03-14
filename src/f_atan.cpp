@@ -10,24 +10,33 @@ template <typename T> static T kernel_atan(T x) {
   constexpr T c3 = static_cast<T>(0.03252232640125);
   constexpr T c4 = static_cast<T>(-0.00749305860992);
 
-  T offset = 0.0;
-  x = -one / x;
-
-  if (x > one) {
-    offset = pi2;
-  } else if (x < -one) {
-    offset = -pi2;
+  bool negative = false;
+  if (x < 0) {
+    x = -x;
+    negative = true;
   }
 
-  T x2 = x * x;
-  T poly = 1.0;
+  bool invert = false;
+  if (x > one) {
+    x = one / x;
+    invert = true;
+  }
+
+  const T x2 = x * x;
+  T poly = one;
   poly += c1 * x2;
-  T x4 = x2 * x2;
+  const T x4 = x2 * x2;
   poly += c2 * x4;
   poly += c3 * (x4 * x2);
   poly += c4 * (x4 * x4);
 
-  return offset + (x / poly);
+  T result = x / poly;
+  if (invert)
+    result = pi2 - result;
+  if (negative)
+    result = -result;
+
+  return result;
 }
 
 float fast_atanf(float x) { return kernel_atan<float>(x); }
