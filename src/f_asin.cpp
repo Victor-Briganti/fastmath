@@ -25,9 +25,9 @@ template <typename T> static T kernel_asin(T x) {
     return (x < 0) ? -pi2 : pi2;
 
   if constexpr (std::is_same_v<T, float>) {
-    return fast_atanf(x / frac);
+    return atanf(x / frac);
   } else if constexpr (std::is_same_v<T, double>) {
-    return fast_atan(x / frac);
+    return atan(x / frac);
   }
 }
 
