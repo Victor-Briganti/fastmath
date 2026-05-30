@@ -22,8 +22,8 @@ static std::vector<double> fastSpeed;
 static std::vector<double> commonSpeed;
 
 static void init_inputs() {
-  static std::vector<double> inputA = gen_random_real<double>(N);
-  static std::vector<double> inputB = gen_random_real<double>(N);
+  std::vector<double> inputA = gen_random_real<double>(N);
+  std::vector<double> inputB = gen_random_real<double>(N);
 
   inputs.reserve(N);
   for (size_t i = 0; i < inputA.size(); i++) {

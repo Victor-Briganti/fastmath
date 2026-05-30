@@ -1,9 +1,9 @@
-#include "fastmath.h"
-
 #include <cmath>
 #include <cstdio>
-#include <cstdlib>
 #include <vector>
+
+#include "../rand.h"
+#include "fastmath.h"
 
 struct BenchStats {
   double x;
@@ -13,31 +13,17 @@ struct BenchStats {
   double rel_err;
 };
 
-constexpr int N = 100;
+constexpr int N = 1000;
 std::vector<BenchStats> benchVec;
 
 void bench_sinh() {
-  benchVec.reserve(N * 2);
-
-  double x = 0.00001;
-  for (int i = 0; i <= N; i++) {
+  std::vector<double> inputs = gen_random_real<double>(N, 0);
+  benchVec.reserve(N);
+  for (int i = 0; i < N; i++) {
     BenchStats stats;
-    stats.x = x;
-    x *= 1.1;
-    stats.common = std::sinh(stats.x);
-    stats.fast = fast_sinh(stats.x);
-    stats.abs_err = std::fabs(stats.common - stats.fast);
-    stats.rel_err = stats.abs_err / std::fabs(stats.common);
-    benchVec.push_back(stats);
-  }
-
-  x = -0.00001;
-  for (int i = 0; i <= N; i++) {
-    BenchStats stats;
-    stats.x = x;
-    x *= 1.1;
-    stats.common = std::sinh(stats.x);
-    stats.fast = fast_sinh(stats.x);
+    stats.x = inputs[i];
+    stats.common = std::acos(stats.x);
+    stats.fast = fast_acos(stats.x);
     stats.abs_err = std::fabs(stats.common - stats.fast);
     stats.rel_err = stats.abs_err / std::fabs(stats.common);
     benchVec.push_back(stats);

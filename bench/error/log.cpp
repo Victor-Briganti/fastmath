@@ -1,9 +1,9 @@
-#include "fastmath.h"
-
 #include <cmath>
 #include <cstdio>
-#include <cstdlib>
 #include <vector>
+
+#include "../rand.h"
+#include "fastmath.h"
 
 struct BenchStats {
   double x;
@@ -13,19 +13,17 @@ struct BenchStats {
   double rel_err;
 };
 
-constexpr int N = 500;
+constexpr int N = 1000;
 std::vector<BenchStats> benchVec;
 
-static void bench_log() {
+void bench_log() {
+  std::vector<double> inputs = gen_random_real<double>(N, 0);
   benchVec.reserve(N);
-
-  double x = 0.00001;
-  for (int i = 0; i <= N; i++) {
+  for (int i = 0; i < N; i++) {
     BenchStats stats;
-    stats.x = x;
-    x *= 1.1;
-    stats.common = std::log(stats.x);
-    stats.fast = fast_log(stats.x);
+    stats.x = inputs[i];
+    stats.common = std::acos(stats.x);
+    stats.fast = fast_acos(stats.x);
     stats.abs_err = std::fabs(stats.common - stats.fast);
     stats.rel_err = stats.abs_err / std::fabs(stats.common);
     benchVec.push_back(stats);

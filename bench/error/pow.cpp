@@ -1,9 +1,9 @@
-#include "fastmath.h"
-
 #include <cmath>
 #include <cstdio>
-#include <cstdlib>
 #include <vector>
+
+#include "../rand.h"
+#include "fastmath.h"
 
 struct BenchStats {
   double a;
@@ -14,35 +14,35 @@ struct BenchStats {
   double rel_err;
 };
 
-constexpr int NA = 256;
-constexpr int NB = 256;
+struct PowInput {
+  double a;
+  double b;
+};
 
+constexpr int N = 1000;
 std::vector<BenchStats> benchVec;
 
 static void bench_pow() {
-  benchVec.reserve((NA + 1) * (NB + 1));
+  benchVec.reserve(N);
 
-  for (int i = 0; i <= NA; i++) {
-    // a in [0.5, 2]
-    double ta = double(i) / double(NA);
-    double a = std::exp(std::log(0.5f) + ta * std::log(4.0f));
+  std::vector<double> inputA = gen_random_real<double>(N);
+  std::vector<double> inputB = gen_random_real<double>(N);
+  std::vector<PowInput> inputs;
+  inputs.reserve(N);
 
-    for (int j = 0; j <= NB; j++) {
-      // b in [-10, 10]
-      double b = -10.0f + 20.0f * (double(j) / double(NB));
+  for (size_t i = 0; i < N; i++) {
+    inputs.push_back({inputA[i], inputB[i]});
+  }
 
-      BenchStats stats;
-      stats.a = a;
-      stats.b = b;
-
-      stats.common = std::pow(a, b);
-      stats.fast = fast_pow(a, b);
-
-      stats.abs_err = std::fabs(stats.common - stats.fast);
-      stats.rel_err = stats.abs_err / std::fabs(stats.common);
-
-      benchVec.push_back(stats);
-    }
+  for (int i = 0; i < N; i++) {
+    BenchStats stats;
+    stats.a = inputs[i].a;
+    stats.b = inputs[i].b;
+    stats.common = std::pow(stats.a, stats.b);
+    stats.fast = fast_pow(stats.a, stats.b);
+    stats.abs_err = std::fabs(stats.common - stats.fast);
+    stats.rel_err = stats.abs_err / std::fabs(stats.common);
+    benchVec.push_back(stats);
   }
 }
 
