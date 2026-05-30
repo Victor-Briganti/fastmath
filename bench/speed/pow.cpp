@@ -1,12 +1,13 @@
-#include "fastmath.h"
-
 #include <chrono>
 #include <cmath>
+#include <cstddef>
 #include <cstdio>
 #include <vector>
 
-constexpr int NA = 8192;
-constexpr int NB = 8192;
+#include "../rand.h"
+#include "fastmath.h"
+
+constexpr size_t N = 100'000'000;
 constexpr int REPS = 10;
 
 static volatile double sink;
@@ -21,17 +22,12 @@ static std::vector<double> fastSpeed;
 static std::vector<double> commonSpeed;
 
 static void init_inputs() {
-  inputs.clear();
-  inputs.reserve((NA + 1) * (NB + 1));
+  static std::vector<double> inputA = gen_random_real<double>(N);
+  static std::vector<double> inputB = gen_random_real<double>(N);
 
-  for (int i = 0; i <= NA; i++) {
-    double ta = double(i) / double(NA);
-    double a = std::exp(std::log(0.5) + ta * std::log(4.0));
-
-    for (int j = 0; j <= NB; j++) {
-      double b = -10.0 + 20.0 * (double(j) / double(NB));
-      inputs.push_back({a, b});
-    }
+  inputs.reserve(N);
+  for (size_t i = 0; i < inputA.size(); i++) {
+    inputs.push_back({inputA[i], inputB[i]});
   }
 }
 

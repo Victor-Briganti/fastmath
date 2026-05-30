@@ -1,9 +1,10 @@
-#include "fastmath.h"
-
 #include <chrono>
 #include <cmath>
 #include <cstdio>
 #include <vector>
+
+#include "../rand.h"
+#include "fastmath.h"
 
 constexpr size_t N = 100'000'000;
 constexpr int REPS = 10;
@@ -13,15 +14,7 @@ static std::vector<double> inputs;
 static std::vector<double> fastSpeed;
 static std::vector<double> commonSpeed;
 
-static void init_inputs() {
-  constexpr double X_MIN = -double(M_PI_2) + double(1e-3);
-  constexpr double X_MAX = double(M_PI_2) - double(1e-3);
-
-  inputs.resize(N);
-  for (size_t i = 0; i < N; i++) {
-    inputs[i] = X_MIN + (X_MAX - X_MIN) * (double(i) / double(N));
-  }
-}
+static void init_inputs() { inputs = gen_random_real<double>(N); }
 
 static double bench_fast_atan() {
   double acc = 0.0;
