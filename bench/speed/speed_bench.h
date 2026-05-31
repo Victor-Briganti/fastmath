@@ -59,7 +59,7 @@ void run_speed_bench_1arg(const char* name, Func1 common_fn, Func2 fast_fn,
   }
 
   std::string suffix = std::is_same_v<T, float> ? "float" : "double";
-  std::string filename = std::string("output/") + name + "_" + suffix + "_speed.csv";
+  std::string filename = std::string("output/speed/") + suffix + "/" + name + ".csv";
   FILE *output = std::fopen(filename.c_str(), "w");
   if (!output) {
     std::perror("Failed to open output file");
@@ -108,7 +108,7 @@ void run_speed_bench_2arg(const char* name, Func1 common_fn, Func2 fast_fn) {
   }
 
   std::string suffix = std::is_same_v<T, float> ? "float" : "double";
-  std::string filename = std::string("output/") + name + "_" + suffix + "_speed.csv";
+  std::string filename = std::string("output/speed/") + suffix + "/" + name + ".csv";
   FILE *output = std::fopen(filename.c_str(), "w");
   if (!output) {
     std::perror("Failed to open output file");

@@ -20,7 +20,7 @@ void run_error_bench_1arg(const char *name, Func1 common_fn, Func2 fast_fn,
 
   std::string suffix = std::is_same_v<T, float> ? "float" : "double";
   std::string filename =
-      std::string("output/") + name + "_" + suffix + "_error.csv";
+      std::string("output/error/") + suffix + "/" + name + ".csv";
   FILE *output = std::fopen(filename.c_str(), "w");
   if (!output) {
     std::perror("Failed to open output file");
@@ -33,7 +33,10 @@ void run_error_bench_1arg(const char *name, Func1 common_fn, Func2 fast_fn,
     T common = common_fn(x);
     T fast = fast_fn(x);
     T abs_err = std::fabs(common - fast);
-    T rel_err = abs_err / std::fabs(common);
+    T rel_err = common == 0 ? abs_err : abs_err / std::fabs(common);
+    if (std::isnan(rel_err) || std::isinf(rel_err))
+      rel_err = 1;
+
     if constexpr (std::is_same_v<T, float>) {
       fprintf(output, "%.7g,%.7g,%.7g,%.7g,%.7g\n", x, common, fast, abs_err,
               rel_err);
@@ -53,7 +56,7 @@ void run_error_bench_2arg(const char *name, Func1 common_fn, Func2 fast_fn) {
 
   std::string suffix = std::is_same_v<T, float> ? "float" : "double";
   std::string filename =
-      std::string("output/") + name + "_" + suffix + "_error.csv";
+      std::string("output/error/") + suffix + "/" + name + ".csv";
   FILE *output = std::fopen(filename.c_str(), "w");
   if (!output) {
     std::perror("Failed to open output file");
@@ -67,7 +70,10 @@ void run_error_bench_2arg(const char *name, Func1 common_fn, Func2 fast_fn) {
     T common = common_fn(a, b);
     T fast = fast_fn(a, b);
     T abs_err = std::fabs(common - fast);
-    T rel_err = abs_err / std::fabs(common);
+    T rel_err = common == 0 ? abs_err : abs_err / std::fabs(common);
+    if (std::isnan(rel_err) || std::isinf(rel_err))
+      rel_err = 1;
+
     if constexpr (std::is_same_v<T, float>) {
       fprintf(output, "%.7g,%.7g,%.7g,%.7g,%.7g,%.7g\n", a, b, common, fast,
               abs_err, rel_err);
