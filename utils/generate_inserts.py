@@ -1,5 +1,5 @@
-import os
 import csv
+import os
 
 OUTPUT_DIR = "output"
 
