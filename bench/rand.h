@@ -9,9 +9,7 @@
 #include <random>
 #include <type_traits>
 
-#define SEED 2345678
-
-template <typename T> bool is_equal(T a, T b, T rel_tol = 1e-12) {
+template <typename T> bool is_equal(T a, T b, T rel_tol = 1e-12f) {
   static_assert((std::is_same_v<T, float> || std::is_same_v<T, double>) &&
                 "Function only supports real numbers");
 
@@ -31,7 +29,7 @@ std::vector<T> gen_random_real(size_t length,
   assert(lower < upper &&
          "Lower limit cannot be greater or equal to upper limit");
 
-  std::mt19937_64 gen(SEED);
+  std::mt19937_64 gen(2345678);
   std::vector<T> numbers;
   numbers.reserve(length);
 
