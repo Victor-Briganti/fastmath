@@ -51,8 +51,8 @@ void run_error_bench_1arg(const char *name, Func1 common_fn, Func2 fast_fn,
 template <typename T, typename Func1, typename Func2>
 void run_error_bench_2arg(const char *name, Func1 common_fn, Func2 fast_fn) {
   constexpr int N = 1000;
-  std::vector<T> inputA = gen_random_real<T>(N);
-  std::vector<T> inputB = gen_random_real<T>(N);
+  std::vector<T> inputA = gen_random_real<T>(N, 0.001, 100.0);
+  std::vector<T> inputB = gen_random_real<T>(N, -4.0, 4.0);
 
   std::string suffix = std::is_same_v<T, float> ? "float" : "double";
   std::string filename =
