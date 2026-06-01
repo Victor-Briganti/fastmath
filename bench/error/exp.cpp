@@ -1,6 +1,6 @@
 #include "error_bench.h"
 
 int main() {
-  RUN_BENCH_1ARG(exp);
+  RUN_BENCH_1ARG_LIM(exp, 0.00001, 1000);
   return EXIT_SUCCESS;
 }

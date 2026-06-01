@@ -1,6 +1,6 @@
 #include "speed_bench.h"
 
 int main() {
-  RUN_SPEED_1ARG(cosh);
+  RUN_SPEED_1ARG_LIM(cosh, 0.00001, 1000);
   return EXIT_SUCCESS;
 }
