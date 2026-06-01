@@ -23,3 +23,25 @@ Other:
 # Acknowledgments
 
 This work would not be possible without the contributions of Robert Bristow-Johnson, whose algorithms and polynomial coefficients form the basis of several implementations used in this library.
+
+# Build and run
+
+Configure and build:
+
+```bash
+cmake -S . -B build
+cmake --build build
+```
+
+Run tests:
+
+```bash
+ctest --test-dir build --output-on-failure
+```
+
+Run benchmarks:
+
+```bash
+./build/fastmath_bench
+```
+
