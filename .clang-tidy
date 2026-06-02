@@ -5,8 +5,11 @@ Checks: "*,
         -fuchsia-*,
         -google-*,
         -llvm*,
-        -modernize-use-trailing-return-type,
         -zircon-*,
+        -hicpp-*,
+        -modernize-use-trailing-return-type,
+        -readability-braces-around-statements,
+        -readability-identifier-length,
         -readability-else-after-return,
         -readability-static-accessed-through-instance,
         -readability-avoid-const-params-in-decls,
@@ -26,8 +29,6 @@ CheckOptions:
   misc-const-correctness.TransformReferences: 'true'
   misc-const-correctness.TransformValues: 'true'
   misc-const-correctness.WarnPointersAsValues: 'false'
-  readability-braces-around-statements.ShortStatementLines: '2'
-  google-readability-braces-around-statements.ShortStatementLines: '2'
   google-readability-function-size.StatementThreshold: '400'
   bugprone-assert-side-effect.CheckFunctionCalls: 'true'
   bugprone-narrowing-conversions.IgnoreConversionFromTypes: ''
